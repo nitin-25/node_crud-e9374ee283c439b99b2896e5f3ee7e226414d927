@@ -7,7 +7,7 @@ const session = require('express-session');
 const app = express();
 const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
-
+const router = require("./routes/routes");
 
 //DB connection
 mongoose.connect(process.env.DB_URI);
@@ -36,16 +36,19 @@ app.use((req, res, next) => {
     next();
 });
 
+//set template engine
+app.set("view engine","ejs");
 
+app.use("", router);
 
-app.get("/",(req,res) => {
-    res.send("hello world");
-});
+// app.get("/",(req,res) => {
+//     res.send("hello nitin with git");
+// });
 
-app.get('/set-message', (req, res) => {
-    req.session.message = 'This is a flash message!';
-    res.redirect('/');
-});
+// app.get('/set-message', (req, res) => {
+//     req.session.message = 'This is a flash message!';
+//     res.redirect('/');
+//});
 
 app.listen(port, () => {
     console.log(`server started at port number : ${port}`);
