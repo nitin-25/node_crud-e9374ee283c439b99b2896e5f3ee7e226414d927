@@ -1,0 +1,11 @@
+# Node.js dependencies
+node_modules/
+
+# npm installed package
+package-lock.json
+
+# dotenv environment variables file
+.env
+
+# MacOS system files
+.DS_Store
